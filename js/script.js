@@ -20,14 +20,33 @@ if (reservationForm) {
 }
 
 //Dish-Image-Zoom
-const dishImage = document.getElementById("dishImage");
-
-if (dishImage) {
-  dishImage.addEventListener("click", function () {
-    if(this.style.transform === "scale(1.2)"){
-        this.style.transform = "scale(1)";
-    } else{
-        this.style.transform = "scale(1.2)";
-    }
+$(document).ready(function () {
+  $("#dishImage").click(function () {
+    $(this).toggleClass("zoomed");
   });
+});
+
+//current-time-date
+
+const dateTime = document.getElementById("dateTime");
+
+if (dateTime) {
+  const now = new Date();
+
+  const time = now.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  const date = now.toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  dateTime.innerHTML = `
+    <div class="fw-bold text-dark">${time}</div>
+    <div class="fw-bold text-danger">${date}</div>
+  `;
 }
